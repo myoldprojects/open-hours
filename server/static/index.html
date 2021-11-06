@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business Open</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/vue3-timepicker@1.0.0-beta.2/dist/VueTimepicker.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>Businesses that are open</h1>
+    <div id="app">
+      <h3>Pick your day & time</h3>
+      <div>
+        <span>
+          <select id v-model="weekday.selected" class="dayPicker">
+            <option
+              v-for="option in weekday.options"
+              v-bind:value="option.value"
+            >
+              {{ option.text }}
+            </option>
+          </select>
+        </span>
+        <vue-timepicker format="hh:mm a" v-model="hourPicker"></vue-timepicker>
+        <button
+          class="dayPicker"
+          @click="getOpenRes(weekday.selected,hourPicker)"
+        >
+          Check Open Hours
+        </button>
+        <button class="dayPicker" @click="getBusiness()">
+          List All businesses
+        </button>
+      </div>
+      <div class="businesses">
+        <ul id="businessList">
+          <li v-for="business in businesses" :key="business.id">
+            {{business.business_name}}
+            <div v-if="listHours">{{business.posted_hours}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- import app-->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue3-timepicker@1.0.0-beta.2/dist/VueTimepikcer.global.js"></script>
+    <script src="/js/app.js"></script>
+    <!-- mount app-->
+    <script>
+      app.component("vue-timepicker", VueTimepicker);
+      const mountedApp = app.mount("#app");
+    </script>
+  </body>
+</html>

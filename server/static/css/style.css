@@ -1,0 +1,29 @@
+.dayPicker {
+  box-sizing: border-box;
+  border: 1px solid #d2d2d2;
+  width: 10em;
+  height: 2.2em;
+  padding: 0.3em 0.5em;
+  font-size: 1em;
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+  font-family: sans-serif;
+  vertical-align: middle;
+}
+.businesses {
+  display: flex;
+  justify-content: left;
+}
+ul {
+  list-style: none;
+}
+li {
+  padding: 0.3em 0.5em;
+}
+li:nth-child(odd) {
+  background: #e2e2e2;
+}
+li:nth-child(even) {
+  background: #fff;
+}
